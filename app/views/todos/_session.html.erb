@@ -1,0 +1,30 @@
+<% if not current_user %>
+<%= form_for @user_session, :html=>{:class => "navbar-form pull-right", :action=>login_path} do |f| %>
+<!--<form class="navbar-form pull-right" method="post" action="<%=login_path%>">  -->
+  <%= f.text_field :email, {:type =>"text", :placeholder=>"Email", :class => "span2"} %>
+  <%= f.text_field :password, {:type =>"password", :placeholder=>"Password", :class => "span2"} %>
+  <button type="submit" class="btn">Sign in</button>
+  <a class="btn" href="<%=new_user_path%>"> Register</a>
+<!--</form>-->
+<%end%>
+<% else %>
+<span class="navbar-inverse pull-right">
+  Welcome <i><%=current_user.username%></i>!
+  <a class="btn" href="<%=logout_path(current_user)%>">Logout</a>
+</span>
+<% end %>
+<br><br>
+<% if !flash[:login].nil? and !flash[:login][:error].nil? %>
+  <div class="alert alert-error pull-right">
+     <button type="button" class="close" data-dismiss="alert" >×</button>
+     <strong><%= flash[:login][:error] %></strong>
+     </div>
+<% end %>
+<% if !flash[:login].nil? and flash[:login][:success] %>
+   <div class="alert alert-success pull-right">
+     <button type="button" class="close" data-dismiss="alert" >×</button>
+     <%=flash[:login][:success]%>
+   </div>
+<% end %>
+
+
