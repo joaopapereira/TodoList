@@ -8,7 +8,10 @@ class TodosController < ApplicationController
     
   end
  def add
-   todo = Todo.create(:todo_item => params[:todo][:todo_item], :user => current_user)
+   endDate = Date.strptime(params[:todo][:todo_date],'%m/%d/%Y')
+   todo = Todo.create(:todo_item => params[:todo][:todo_item], 
+                      :user => current_user, 
+                      :todo_date => endDate)
    unless todo.valid?
      flash[:error] = todo.errors.full_messages.join("<br>").html_safe
    else
