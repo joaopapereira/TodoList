@@ -9,7 +9,10 @@
   <%= csrf_meta_tags %>
 <script>
   $(function() {
-    $( "#datepicker" ).datepicker();
+    $('#datetimepicker').datetimepicker({
+    	timeFormat: "hh:mm tt"
+    });
+
   });
   </script>
 </head>
