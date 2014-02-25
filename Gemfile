@@ -34,11 +34,13 @@ group :doc do
 end
 
 group :test, :development do
+  gem 'faker'
   gem 'capybara'
   gem 'rspec-rails'
   gem 'cucumber'
-  gem 'cucumber-rails'
-  gem 'factory_girl'
+  gem 'cucumber-rails', :require => false
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

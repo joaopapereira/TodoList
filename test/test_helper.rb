@@ -1,6 +1,8 @@
 ENV["RAILS_ENV"] ||= "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
+require 'factory_girl_rails'
+require "factory_girl/step_definitions"
 
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
@@ -10,6 +12,8 @@ class ActiveSupport::TestCase
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
   fixtures :all
+  FactoryGirl.find_definitions 
+
 
   # Add more helper methods to be used by all tests here...
 end
