@@ -1,11 +1,11 @@
-<title>Shared Todo App </title>
-<div class="container">
-  <div class="hero-unit">
+
+  <div class="hero-unit" style="center">
      <h1>Shared Todo Application</h1>
   </div>
 <% if current_user %>
-  <div class="row">
+  <div class="row-fluid">
     <div class="span7">
+      <div class="row-fluid">
       <h1>All your todos here</h1>
       <hr>
       <%= form_tag("/todos/complete/", :method => "post") do %>
@@ -36,12 +36,9 @@
          </ul>
          <%= submit_tag("Complete Todos", :class=>"btn btn-success") %>
       <%end %>
+      </div>
     </div> <!-- span4 -->
-    <div class="span4">
-<%= render "todos/add_todo" %>
-    </div>
-
   </div> <!-- row -->
-</div> <!-- container -->
+
 <%= link_to "Delete last todo", delete_path %>
 <%end%>

@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user_session = UserSession.find || UserSession.new
-    puts user_params
+    puts "User paramters: #{params[:user]}"
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -75,6 +75,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :crypted_password, :password_salt, :persistence_token)
+      params.require(:user).permit(:username, :email, :password, :password_confirmation, :password_salt, :persistence_token)
     end
 end
