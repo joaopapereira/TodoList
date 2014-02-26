@@ -3,7 +3,7 @@ class CreateAll < ActiveRecord::Migration
       
     create_table :users do |t|
       t.string :username
-      t.string :email
+      t.string :email, :primary_key
       t.string :crypted_password
       t.string :password_salt
       t.string :password_field

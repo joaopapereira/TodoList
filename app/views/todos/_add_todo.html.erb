@@ -2,7 +2,7 @@
          <hr>
          <%= form_for @new_todo, :url => { :action => "add" }  do |f|  %>
             ToDo: <%= f.text_field  :todo_item %><br>
-            Final Date: <%= f.text_field :todo_date , :id =>"datetimepicker"%>
+            Final Date: <%= f.text_field :todo_date , :id =>"datetimepicker1"%>
             <%= f.submit "Add todo", class: "btn btn-primary" %>
          <%end%>
          <% if !flash[:error].nil? %>

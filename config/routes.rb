@@ -8,8 +8,9 @@ TodoList::Application.routes.draw do
   match "todos/delete" => "todos#delete", :as => :delete, via: [:get, :post]
   match "todos/add" => "todos#add", :via => :post
   match 'todos/complete' => 'todos#complete', :via => :post
+  
 
-
+  root 'todos#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

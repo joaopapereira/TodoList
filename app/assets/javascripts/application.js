@@ -10,7 +10,24 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(document).ready(function () {
+    
+    /*$(function(){
+      /*$('#form-signin').submit(function(e){
+        $('#form-signin').validate()
+        return false;
+      });
+      
+      $('#modaltrigger').leanModal({ top: 110, overlay: 0.45, closeButton: ".hidemodal" });
+    });*/
+    
+    $(function() {
+        $('#new_todo :input#datetimepicker1').datetimepicker({
+            timeFormat: "hh:mm tt"
+        });
+    
+      });
+});
