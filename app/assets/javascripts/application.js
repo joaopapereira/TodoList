@@ -13,6 +13,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require gritter
+
 $(document).ready(function () {
     
     /*$(function(){

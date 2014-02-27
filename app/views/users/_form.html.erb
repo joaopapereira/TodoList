@@ -1,8 +1,7 @@
-<%= form_for(@user, :html=>{:class => "navbar-form pull-right"}) do |f| %>
+<%= form_for(@user, :html=>{:class => "navbar-form pull-center"}) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
       <ul>
       <% @user.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -10,26 +9,54 @@
       </ul>
     </div>
   <% end %>
+  <table>
+    <div class="field">
+    <tr>
+      <td>
+        <%= f.label :username %>
+      </td>
+      <td>
+        <%= f.text_field :username %>
+      </td>
+    </tr>
+    </div>
+    <div class="field">
+    <tr>
+      <td>
+        <%= f.label :email %>
+      </td>
+      <td>
+        <%= f.text_field :email ,{ :disabled => @editing}%>
+      </td>
+    </tr>
+    </div>
+    <div class="field">
+    <tr>
+      <td>
+        <%= f.label :password %>
+      </td>
+      <td>
+        <%= f.text_field :password , {:type => "password"}%>
+      </td>
+    </tr>
+    </div>
+    <div class="field">
+    <tr>
+      <td>
+        <%= f.label :password_confirmation %>
+      </td>
+      <td>
+        <%= f.text_field :password_confirmation , {:type => "password" }%>
+      </td>
+    </tr>
+    </div>
+    <div class="actions">
+    <tr>
+      <td>
+        <%= f.submit %>
+      </td>
+    </tr>
+    </div>    
 
-  <div class="field">
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.text_field :password, {:type => "password"} %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br>
-    <%= f.text_field :password_confirmation, {:type => "password"} %>
-  </div>
-
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </table>
 <% end %>

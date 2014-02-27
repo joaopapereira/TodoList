@@ -18,10 +18,12 @@ class UsersController < ApplicationController
   def new
     @user_session = UserSession.find || UserSession.new
     @user = User.new
+    @editing = false
   end
 
   # GET /users/1/edit
   def edit
+    @editing = true
   end
 
   # POST /users

@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require gritter
  */
 /** modal window styles **/
 #lean_overlay {
@@ -22,7 +23,6 @@
     background: #000;
     display: none;
 }
-
 
 .form-signin {
         max-width: 300px;

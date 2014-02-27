@@ -1,8 +1,10 @@
 TodoList::Application.routes.draw do
-  resources :users
+  #resources :users
   resources :user_sessions
-  match 'login' => 'user_sessions#create', :as => :login, via: [:get, :post]
-  match 'logout' => 'user_sessions#destroy', :as => :logout, via: [:get]
+  match 'login' => 'user_sessions#create', :as => :login, via: [ :post]
+  match 'logout/:id' => 'user_sessions#destroy', :as => :logout, via: [:get]
+  match 'users/:id/edit' => 'users#edit', :as => :user_edit, via: [:get]
+  match 'users/new' => 'users#new', :as => :user_new, via: [:get]
 
   get "todos/index"
   match "todos/delete" => "todos#delete", :as => :delete, via: [:get, :post]
