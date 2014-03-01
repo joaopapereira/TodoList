@@ -3,26 +3,13 @@
   <%= f.text_field :email, {:type =>"text", :placeholder=>"Email", :class => "form-control"} %>
   <%= f.text_field :password, {:type =>"password", :placeholder=>"Password", :class => "form-control"} %>
   <button type="submit" class="btn btn-success">Sign in</button>
-  <a class="btn" href="<%=user_new_path%>"> Register</a>
+  <a class="btn btn-success" href="<%=user_new_path%>"> Register</a>
 <%end%>
 <% else %>
-<span class="navbar-text pull-right">
-  Welcome <i><a class="blog-nav-item" href="<%=user_edit_path(current_user)%>"><%=current_user.username%></a></i>!
+<span class="navbar-text navbar-right">
+  Welcome <i><a href="<%=user_edit_path(current_user)%>"><%=current_user.username%></a></i>!
   <a class="btn" href="<%=logout_path(current_user)%>">Logout</a>
 </span>
-<% end %>
-<br><br>
-<% if !flash[:login].nil? and !flash[:login][:error].nil? %>
-  <div class="alert alert-error pull-right">
-     <button type="button" class="close" data-dismiss="alert" >×</button>
-     <strong><%= flash[:login][:error] %></strong>
-     </div>
-<% end %>
-<% if !flash[:login].nil? and flash[:login][:success] %>
-   <div class="alert alert-success pull-right">
-     <button type="button" class="close" data-dismiss="alert" >×</button>
-     <%=flash[:login][:success]%>
-   </div>
 <% end %>
 
 

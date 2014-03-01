@@ -1,19 +1,26 @@
-         <h1> Add new todo</h1>
-         <hr>
-         <%= form_for @new_todo, :url => { :action => "add" }  do |f|  %>
-            ToDo: <%= f.text_field  :todo_item %><br>
-            Final Date: <%= f.text_field :todo_date , :id =>"datetimepicker1"%>
-            <%= f.submit "Add todo", class: "btn btn-primary" %>
-         <%end%>
-         <% if !flash[:error].nil? %>
-          <div class="alert alert-error">
-             <button type="button" class="close" data-dismiss="alert" >×</button>
-             <strong><%= flash[:error] %></strong>
-             </div>
-         <% end %>
-         <% if flash[:success] %>
-           <div class="alert alert-success">
-             <%=flash[:success]%>
-           </div>
-         <% end %>
+<hr><br><br><br><br>
+<h1> Add new todo</h1>
+<hr>
+<%= form_for @new_todo, :url => { :action => "create" }  do |f|  %>
+  <table>
+   <tr>
+    <td>
+     ToDo:
+    </td>
+    <td>
+     <%= f.text_field  :todo_item %>
+    </td>
+   </tr>
+   <tr>
+    <td>
+     Final Date:
+    </td>
+    <td>
+     <%= f.text_field :todo_date , :id =>"datetimepicker1"%>
+    </td>
+   </tr>
+</table>
+<a class="btn btn-success" href="<%=root_path%>">Back</a>
+<%= f.submit "Add todo", class: "btn btn-success" %>
+<%end%>
 

@@ -5,14 +5,17 @@ TodoList::Application.routes.draw do
   match 'logout/:id' => 'user_sessions#destroy', :as => :logout, via: [:get]
   match 'users/:id/edit' => 'users#edit', :as => :user_edit, via: [:get]
   match 'users/new' => 'users#new', :as => :user_new, via: [:get]
+  match 'users' => 'users#create',  via: [:post]
 
-  get "todos/index"
-  match "todos/delete" => "todos#delete", :as => :delete, via: [:get, :post]
-  match "todos/add" => "todos#add", :via => :post
-  match 'todos/complete' => 'todos#complete', :via => :post
+  #get "todos/index"
+  #match "todos/delete" => "todos#delete", via: [:get, :post]
+  ##match "todos/add" => "todos#add", :via => :get
+  #match "todos/create" => "todos#create", :via => :post
+  #match 'todos/complete' => 'todos#complete', :via => :post
+  resources :todos
   
 
-  root 'todos#index'
+  root 'todos#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

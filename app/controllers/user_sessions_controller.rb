@@ -19,10 +19,12 @@ class UserSessionsController < ApplicationController
  
     respond_to do |format|
       if @user_session.save
-        format.html { redirect_to(todos_index_path, :flash => {:login => {:success => 'Login Successful'}}) }
+        gflash :success => "Login Successful!!!"
+        format.html { redirect_to(root_path, :flash => {:login => {:success => 'Login Successful'}}) }
         format.xml  { render :xml => @user_session, :status => :created, :location => @user_session }
       else
-        format.html { redirect_to(todos_index_path, :flash => {:login => {:error => 'Email and password do not match'}}) }
+        gflash :error => "Email and password do not match!!"
+        format.html { redirect_to(root_path, :flash => {:login => {:error => 'Email and password do not match'}}) }
         format.xml  { render :xml => @user_session.errors, :status => :unprocessable_entity }
       end
     end
@@ -34,6 +36,6 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.find
     @user_session.destroy
  
-    redirect_to(todos_index_path,  :flash => {:login => {:success => 'Logout Successful'}}) 
+    redirect_to(root_path,  :flash => {:login => {:success => 'Logout Successful'}}) 
   end
 end

@@ -30,6 +30,9 @@ $(document).ready(function () {
         $('#new_todo :input#datetimepicker1').datetimepicker({
             timeFormat: "hh:mm tt"
         });
-    
+        $.extend($.datepicker,{_checkOffset:function(inst,offset,isFixed){return offset}});
       });
+    $('.todo_delete').click (function () {
+		return confirm ("Are you sure you want to " + $(this).attr ("title") + "?") ;
+	}) ;
 });
