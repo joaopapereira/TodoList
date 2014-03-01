@@ -19,11 +19,14 @@ class UsersController < ApplicationController
     @user_session = UserSession.find || UserSession.new
     @user = User.new
     @editing = false
+    @url_action = user_create_path
   end
 
   # GET /users/1/edit
   def edit
+    @user = current_user
     @editing = true
+    @url_action = user_update_path(@user)
   end
 
   # POST /users
@@ -49,6 +52,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     @user_session = UserSession.find || UserSession.new
+    puts user_params
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to root_path, notice: 'User was successfully updated.' }
