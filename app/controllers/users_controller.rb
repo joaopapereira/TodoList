@@ -17,9 +17,10 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user_session = UserSession.find || UserSession.new
-    @user = User.new
+    @user = @user || User.new
     @editing = false
     @url_action = user_create_path
+    render 'new'
   end
 
   # GET /users/1/edit
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
     @user = current_user
     @editing = true
     @url_action = user_update_path(@user)
+    render 'edit'
   end
 
   # POST /users
@@ -36,32 +38,29 @@ class UsersController < ApplicationController
     puts "User paramters: #{params[:user]}"
     @user = User.new(user_params)
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to root_path, notice: 'User was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user }
-        gflash :success => "User '#{@user.email}' created correctly"
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    
+    if @user.save
+      fredirect_to root_path
+      gflash :success => "User '#{@user.email}' created correctly"
+    else
+      handle_errors
+      new
     end
+
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
     @user_session = UserSession.find || UserSession.new
-    puts user_params
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to root_path, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
-        gflash :success => "User '#{@user.email}' updated correctly"
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      gflash :success => "User '#{@user.email}' updated correctly"
+      redirect_to root_path
+      
+    else
+      handle_errors
+      edit
+      
     end
   end
 
@@ -69,16 +68,18 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
-    end
+    redirect_to users_url
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+    def handle_errors
+      @user.errors.full_messages.each do |msg|
+        gflash :error => msg
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

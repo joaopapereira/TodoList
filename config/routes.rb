@@ -6,7 +6,7 @@ TodoList::Application.routes.draw do
   match 'users/:id/edit' => 'users#edit', :as => :user_edit, via: [:get]
   match 'users/new' => 'users#new', :as => :user_new, via: [:get]
   match 'users/create' => 'users#create',  :as => :user_create, via: [:post]
-  match 'users/:id/update' => 'users#update', :as => :user_update, via: [:post]
+  match 'users/:id' => 'users#update', :as => :user_update, via: [:post]
 
   #get "todos/index"
   #match "todos/delete" => "todos#delete", via: [:get, :post]
