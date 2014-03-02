@@ -60,9 +60,6 @@ class TodosController < ApplicationController
   def edit
     @new_todo = Todo.find_by_id(params[:id])
     @operation = "Edit"
-    puts "Pifo: #{@new_todo.todo_date}"
-    @new_todo.todo_date = Date.strptime(@new_todo.todo_date,'%m/%d/%Y')
-    puts "Pifo: #{@new_todo.todo_date}"
 
     render "_add_todo.html"
   end

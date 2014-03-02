@@ -15,7 +15,7 @@
      Final Date:
     </td>
     <td>
-     <%= f.text_field :todo_date , :id =>"datetimepicker1"%>
+     <%= f.text_field :todo_date , :id =>"datetimepicker1", :value => f.object.todo_date.blank? ? "": custom_time(f.object.todo_date)%>
     </td>
    </tr>
 </table>

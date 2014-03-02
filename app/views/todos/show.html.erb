@@ -36,12 +36,12 @@
                 <% if t.completed == true %>
                    <td style="color:grey;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <strike><%= t.todo_item %></strike> </td>
                    <td style="color:grey;"> 
-                       <%=t.todo_date %>
+                       <%=custom_time(t.todo_date) %>
                    </td>
                 <% else %>
                    <td> <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.todo_item %>  </td>
                    <td> 
-                       <%=t.todo_date%>
+                       <%=custom_time(t.todo_date)%>
                    </td>
                 <% end %>
                  </tr>
