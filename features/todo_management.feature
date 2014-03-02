@@ -11,14 +11,14 @@ Feature: Manage ToDo's
       | user1@email.com | ToDo3      | 22/04/2000 |
     
     Scenario: Add new ToDo
-        Given I am logged with email 'user1@email.com' and password 'SECRET1'
+        Given I am logged in as "user1@email.com" and password "SECRET1"
         And   I am at the add todo page
         Then  I fill the form with text 'New ToDo' and date '22/10/2040 10:05'
         And   I see the message of successfull ToDo Added
         And   I go to the home page
         And   I see 'New ToDo' is present
     Scenario: Edit new ToDo
-        Given I am logged with email 'user1@email.com' and password 'SECRET1'
+        Given I am logged in as "user1@email.com" and password "SECRET1"
         And   I am at 
         Then  I fill the form with text 'New ToDo' and date '22/10/2040 10:05'
         And   I see the message of successfull ToDo Added

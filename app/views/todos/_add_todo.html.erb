@@ -1,5 +1,4 @@
-<hr><br><br><br><br>
-<h1> Add new todo</h1>
+<h3> <%=@operation%> todo</h3>
 <hr>
 <%= form_for @new_todo, :url => { :action => "create" }  do |f|  %>
   <table>
@@ -21,6 +20,6 @@
    </tr>
 </table>
 <a class="btn btn-success" href="<%=root_path%>">Back</a>
-<%= f.submit "Add todo", class: "btn btn-success" %>
+<%= f.submit "#{@operation} todo", class: "btn btn-success" %>
 <%end%>
 

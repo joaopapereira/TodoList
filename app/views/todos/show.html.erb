@@ -28,7 +28,10 @@
                                  todo_path(t),
                                  method: :delete,
                                  data: { confirm: "Are you certain you want to delete '#{t.todo_item}'?" }%>
-
+                     <%= link_to image_tag("edit-icon.png",
+                                           :alt => "Edit ToDo",
+                                           size: "24x24"),
+                                 edit_todo_path(t)%>
                    </td>
                 <% if t.completed == true %>
                    <td style="color:grey;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <strike><%= t.todo_item %></strike> </td>

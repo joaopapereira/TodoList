@@ -28,7 +28,8 @@ $(document).ready(function () {
     
     $(function() {
         $('#new_todo :input#datetimepicker1').datetimepicker({
-            timeFormat: "hh:mm tt"
+            controlType: 'select',
+            timeFormat: 'hh:mm tt'
         });
         $.extend($.datepicker,{_checkOffset:function(inst,offset,isFixed){return offset}});
       });

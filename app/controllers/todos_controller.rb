@@ -35,6 +35,7 @@ class TodosController < ApplicationController
   end
   def new
     @new_todo = Todo.new
+    @operation = "Add new"
     render "_add_todo.html"
   end
   def create
@@ -56,6 +57,15 @@ class TodosController < ApplicationController
      end
      redirect_to :action => 'show'
    end
+  def edit
+    @new_todo = Todo.find_by_id(params[:id])
+    @operation = "Edit"
+    puts "Pifo: #{@new_todo.todo_date}"
+    @new_todo.todo_date = Date.strptime(@new_todo.todo_date,'%m/%d/%Y')
+    puts "Pifo: #{@new_todo.todo_date}"
+
+    render "_add_todo.html"
+  end
   def complete
     puts params
     if not params.has_key? :todos_checkbox
