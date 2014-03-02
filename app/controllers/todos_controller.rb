@@ -36,6 +36,7 @@ class TodosController < ApplicationController
   def new
     @new_todo = Todo.new
     @operation = "Add new"
+    @action = "create"
     render "_add_todo.html"
   end
   def create
@@ -44,8 +45,7 @@ class TodosController < ApplicationController
 	redirect_to :action => "new"
 	return
       end
-      
-      
+
      endDate = Date.strptime(params[:todo][:todo_date],'%m/%d/%Y')
      todo = Todo.create(:todo_item => params[:todo][:todo_item], 
 		       :user => current_user, 
@@ -56,12 +56,25 @@ class TodosController < ApplicationController
        gflash :success => "Todo '#{params[:todo][:todo_item]}' added successfully!"
      end
      redirect_to :action => 'show'
-   end
+  end
   def edit
     @new_todo = Todo.find_by_id(params[:id])
     @operation = "Edit"
+    @action = "update"
 
     render "_add_todo.html"
+  end
+  def update
+    
+    @new_todo = Todo.find_by_id(params[:id])
+    if @new_todo.update(todo_params)
+      gflash :success => "ToDo '#{@new_todo.todo_item}' updated correctly"
+      redirect_to root_path
+      
+    else
+      handle_errors(@new_todo)
+      edit
+    end
   end
   def complete
     puts params
@@ -88,5 +101,14 @@ class TodosController < ApplicationController
 	return false
       end
       return true
+    end
+    def handle_errors( todo )
+      todo.errors.full_messages.each do |msg|
+        gflash :error => msg
+      end
+    end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def todo_params
+      params.require(:todo).permit(:todo_date, :todo_item)
     end
 end

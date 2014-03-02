@@ -1,6 +1,6 @@
 <h3> <%=@operation%> todo</h3>
 <hr>
-<%= form_for @new_todo, :url => { :action => "create" }  do |f|  %>
+<%= form_for @new_todo, :url => { :action => @action }  do |f|  %>
   <table>
    <tr>
     <td>
