@@ -45,11 +45,14 @@ class TodosController < ApplicationController
 	redirect_to :action => "new"
 	return
       end
-
-     endDate = Date.strptime(params[:todo][:todo_date],'%m/%d/%Y')
+      
+     endDate = DateTime.strptime(params[:todo][:todo_date],'%d/%m/%Y %H:%M')
+     puts "the date #{params[:todo][:todo_date]}"
+     puts "the date again #{endDate}"
      todo = Todo.create(:todo_item => params[:todo][:todo_item], 
 		       :user => current_user, 
-		       :todo_date => endDate)
+		       :todo_date => endDate,
+		       :description => params[:todo][:description])
      unless todo.valid?
        gflash :error => todo.errors.full_messages.join("<br>").html_safe
      else
@@ -109,6 +112,6 @@ class TodosController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_params
-      params.require(:todo).permit(:todo_date, :todo_item)
+      params.require(:todo).permit(:todo_date, :todo_item, :description)
     end
 end

@@ -18,12 +18,12 @@
      <%= f.text_field :todo_date , :id =>"datetimepicker1", :value => f.object.todo_date.blank? ? "": custom_time(f.object.todo_date)%>
     </td>
    </tr>
-      <tr>
-    <td>
+   <tr>
+    <td valign="top">
      Description:
     </td>
     <td>
-     <%= f.text_area :description%>
+     <%= f.text_area :description, size: "70x10"%>
     </td>
    </tr>
 </table>
