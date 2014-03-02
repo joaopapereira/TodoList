@@ -1,7 +1,7 @@
 <h3> <%=@operation%> todo</h3>
 <hr>
 <%= form_for @new_todo, :url => { :action => @action }  do |f|  %>
-  <table>
+  <table class="span6">
    <tr>
     <td>
      ToDo:
@@ -16,6 +16,14 @@
     </td>
     <td>
      <%= f.text_field :todo_date , :id =>"datetimepicker1", :value => f.object.todo_date.blank? ? "": custom_time(f.object.todo_date)%>
+    </td>
+   </tr>
+      <tr>
+    <td>
+     Description:
+    </td>
+    <td>
+     <%= f.text_area :description%>
     </td>
    </tr>
 </table>
