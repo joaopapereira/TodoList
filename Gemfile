@@ -43,6 +43,7 @@ group :test, :development do
   gem 'cucumber-rails', :require => false
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'selenium'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
