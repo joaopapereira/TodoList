@@ -18,6 +18,7 @@
                     <td></td>
                     <td> ToDo </td>
                     <td> Date </td>
+                    <td> Label </td>
                  </tr>
               <% @todo_items.each do |t| %> 
                  <tr>
@@ -42,6 +43,11 @@
                    <td> <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.todo_item %>  </td>
                    <td> 
                        <%=custom_time(t.todo_date)%>
+                   </td>
+                   <td>
+                     <% t.label_todo.each do |label|%>
+                      <button type="button" class="btn btn-xs btn-primary" onclick="false"><%=label.label.label_name%></button>
+                     <% end %>
                    </td>
                 <% end %>
                  </tr>
